@@ -56,6 +56,8 @@ def main(snps, model, vmin, opt, PTS, figsize, figsize2):
         model_fun = demo_models_kp.iso_inbreeding
     elif model == "mig_inbred":
         model_fun = demo_models_kp.mig_inbreeding
+    elif model == "no_mig":
+        model_fun = demo_models_kp.no_migration
     elif model == "anc_mig":
         model_fun = demo_models_kp.anc_sym_mig_inbred
     elif model == "sec_cont":
