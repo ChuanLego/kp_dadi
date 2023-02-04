@@ -58,6 +58,10 @@ def main(snps, model, vmin, opt, PTS, figsize, figsize2):
         model_fun = demo_models_kp.mig_inbreeding
     elif model == "no_mig":
         model_fun = demo_models_kp.no_migration
+    elif model == "sym_mig":
+        model_fun = demo_models_kp.sym_migration
+    elif model == "asym_mig":
+        model_fun = demo_models_kp.asym_migration
     elif model == "anc_mig":
         model_fun = demo_models_kp.anc_sym_mig_inbred
     elif model == "sec_cont":
