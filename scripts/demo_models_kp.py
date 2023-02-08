@@ -218,6 +218,37 @@ def anc_sym_mig_inbred(params, ns, pts):
     fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
     return fs
 
+    """
+    
+    ############building a new model#################
+    
+    """
+def anc_asym_mig_inbred(params, ns, pts):
+
+    """
+    Split with asymmetric migration followed by isolation.
+
+    nu1: Size of population 1 after split.
+    nu2: Size of population 2 after split.
+    m12: Migration from pop 2 to pop 1 (2*Na*m12).
+    m21: Migration from pop 1 to pop 2.
+    T1: The scaled time between the split and the ancient migration (in units of 2*Na generations).
+    T2: The scaled time between the ancient migration and present.
+    """
+    nu1, nu2, F1, F2, m12, m21, T1, T2 = params
+
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = PhiManip.phi_1D_to_2D(xx, phi)
+
+    phi = Integration.two_pops(phi, xx, T1, nu1, nu2, m12=m12, m21=m21)
+
+    phi = Integration.two_pops(phi, xx, T2, nu1, nu2, m12=0, m21=0)
+
+    fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
+    return fs
+
 
 def anc_asym_migration(params, ns, pts):
     """

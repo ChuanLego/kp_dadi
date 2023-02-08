@@ -117,7 +117,7 @@ if __name__ == '__main__':
     opt = args.opt
 
     # Extrapolating grid size
-    PTS = [50, 60, 70]
+    PTS = [60, 70, 80]
 
     # Figure sizes
     figsize = (2.5, 2)

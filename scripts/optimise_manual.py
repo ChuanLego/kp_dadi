@@ -150,6 +150,13 @@ def main(snps, model, masked, method, folds, int_params, PTS):
         upper = [150, 150, 150, 150, 1, 1, 10, 10, 15, 15]
         lower = [0.001, 0.001, 0.001, 0.001, 0.00001, 0.00001, 0.001, 0.001, 0.001, 0.001]
         model_fun = demo_models_kp.mig_be_inbred
+    elif model == "anc_asym_mig_inbred":
+        # ancent asym migration with inbreeding
+        num = 8
+        p_labels = "nu1, nu2, F1, F2, m12, m21, T1, T2"
+        upper = [200, 200, 1, 1, 20, 20, 15, 15]
+        lower = [0.001, 0.001, 0.00001, 0.00001, 0.001, 0.001, 0.001, 0.001]
+        model_fun = demo_models_kp.anc_asym_mig_inbred
     else:
         print("model nickname undefined please check you are using the correct model nickname!")
 
