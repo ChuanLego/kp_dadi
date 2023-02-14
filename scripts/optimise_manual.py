@@ -89,7 +89,7 @@ def main(snps, model, masked, method, folds, int_params, PTS):
         num = 5
         p_labels = "nu1, nu2, m12, m21, T"
         upper = [150, 150, 10, 10, 15]
-        lower = [0.001, 0.001, 0.001, 0.001, 0.001]
+        lower = [0.001, 0.001, 0.001, 0.001,0.001]
         model_fun = demo_models_kp.asym_migration
     elif model == "anc_sym_mig":
         num = 5
@@ -150,13 +150,37 @@ def main(snps, model, masked, method, folds, int_params, PTS):
         upper = [150, 150, 150, 150, 1, 1, 10, 10, 15, 15]
         lower = [0.001, 0.001, 0.001, 0.001, 0.00001, 0.00001, 0.001, 0.001, 0.001, 0.001]
         model_fun = demo_models_kp.mig_be_inbred
+# new models
     elif model == "anc_asym_mig_inbred":
-        # ancent asym migration with inbreeding
+        # ancient asym migration with inbreeding
         num = 8
         p_labels = "nu1, nu2, F1, F2, m12, m21, T1, T2"
         upper = [200, 200, 1, 1, 20, 20, 15, 15]
         lower = [0.001, 0.001, 0.00001, 0.00001, 0.001, 0.001, 0.001, 0.001]
         model_fun = demo_models_kp.anc_asym_mig_inbred
+    elif model == "aamsi":
+        # ancient asym migration before and after size change with inbreeding
+        num = 12
+        p_labels = "nu1, nu2, nu1a, nu2a, F1, F2, m12b, m21b, m12a, m21a, T1, T2"
+        upper = [200, 200, 200, 200, 1, 1, 20, 20, 20, 20, 15, 15]
+        lower = [0.001, 0.001, 0.001, 0.001, 0.00001, 0.00001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
+        model_fun = demo_models_kp.anc_asym_mig_size_inbred
+    elif model == "asym_mig_inbred":
+        # asym migration with inbreeding
+        num = 8
+        p_labels = "nu1, nu2, m12, m21, T, F1, F2"
+        upper = [200, 200, 20, 20, 20, 1, 1]
+        lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.00001, 0.00001]
+        model_fun = demo_models_kp.asym_migration_inbred
+    elif model == "asym_mig_size":
+        # asym migration with size change
+        num = 10
+        p_labels = "nu1, nu1a, nu2, nu2a, m12b, m21b, m12a, m21a, T1, T2"
+        upper = [200, 200, 200, 200, 20, 20, 20, 20, 15, 15]
+        lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
+        model_fun = demo_models_kp.asym_migration_size
+
+
     else:
         print("model nickname undefined please check you are using the correct model nickname!")
 

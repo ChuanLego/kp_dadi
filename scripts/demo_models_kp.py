@@ -218,38 +218,6 @@ def anc_sym_mig_inbred(params, ns, pts):
     fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
     return fs
 
-    """
-    
-    ############building a new model#################
-    
-    """
-def anc_asym_mig_inbred(params, ns, pts):
-
-    """
-    Split with asymmetric migration followed by isolation.
-
-    nu1: Size of population 1 after split.
-    nu2: Size of population 2 after split.
-    m12: Migration from pop 2 to pop 1 (2*Na*m12).
-    m21: Migration from pop 1 to pop 2.
-    T1: The scaled time between the split and the ancient migration (in units of 2*Na generations).
-    T2: The scaled time between the ancient migration and present.
-    """
-    nu1, nu2, F1, F2, m12, m21, T1, T2 = params
-
-    xx = Numerics.default_grid(pts)
-
-    phi = PhiManip.phi_1D(xx)
-    phi = PhiManip.phi_1D_to_2D(xx, phi)
-
-    phi = Integration.two_pops(phi, xx, T1, nu1, nu2, m12=m12, m21=m21)
-
-    phi = Integration.two_pops(phi, xx, T2, nu1, nu2, m12=0, m21=0)
-
-    fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
-    return fs
-
-
 def anc_asym_migration(params, ns, pts):
     """
     Split with asymmetric migration followed by isolation.
@@ -586,3 +554,117 @@ def mig_sec_cont23(params, ns, pts):
 
     fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx, xx), (F1, F2, F3), (2, 2, 2))
     return fs
+
+
+
+########
+#############building a new model#################
+########
+def anc_asym_mig_inbred(params, ns, pts):
+
+    """
+    Split with asymmetric migration followed by isolation.
+
+    nu1: Size of population 1 after split.
+    nu2: Size of population 2 after split.
+    m12: Migration from pop 2 to pop 1 (2*Na*m12).
+    m21: Migration from pop 1 to pop 2.
+    T1: The scaled time between the split and the ancient migration (in units of 2*Na generations).
+    T2: The scaled time between the ancient migration and present.
+    """
+    nu1, nu2, F1, F2, m12, m21, T1, T2 = params
+
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = PhiManip.phi_1D_to_2D(xx, phi)
+
+    phi = Integration.two_pops(phi, xx, T1, nu1, nu2, m12=m12, m21=m21)
+
+    phi = Integration.two_pops(phi, xx, T2, nu1, nu2, m12=0, m21=0)
+
+    fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
+    return fs
+
+
+#########
+# define a new model
+#########
+def anc_asym_mig_size_inbred(params, ns, pts):
+    """
+    Population split into 2 with asym ancient migration before and after size change.
+
+    nu1: Size of population 1 after split.
+    nu1a: Change of population size 1.
+    nu2: Size of population 2 after split.
+    nu2a: Change of poulation size 2.
+    F1: Inbreeding in population 1.
+    F2: Inbreeding in population 2.
+    m12b: Migration rate from pop 2 to 1 (2*Na*m) before size change.
+    m21b: Migration rate from pop 1 to 2 (2*Na*m) before size change.
+    m12a: Migration rate from pop 2 to 1 (2*Na*m) after size change.
+    m21a: Migration rate from pop 1 to 2 (2*Na*m) after size change.
+    T1: Time in past of split (in units of 2*Na generations)
+    T2: Time in past of pop size change (in units of 2*Na generations)
+
+    """
+    #12 params
+    nu1, nu2, nu1a, nu2a, F1, F2, m12b, m21b, m12a, m21a, T1, T2 = params
+
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = PhiManip.phi_1D_to_2D(xx, phi)
+    phi = Integration.two_pops(phi, xx, T1, nu1=nu1, nu2=nu2, m12=m12b, m21=m21b)
+    phi = Integration.two_pops(phi, xx, T2, nu1=nu1a, nu2=nu2a, m12=m12a, m21=m21a)
+    fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
+    return fs
+
+def asym_migration_inbred(params, ns, pts):
+    """
+    Split into two populations, with different migration rates and inbreediing.
+
+    nu1: Size of population 1 after split.
+    nu2: Size of population 2 after split.
+    T: Time in the past of split (in units of 2*Na generations)
+    m12: Migration from pop 2 to pop 1 (2*Na*m12)
+    m21: Migration from pop 1 to pop 2
+    F1: Inbreeding in population 1.
+    F2: Inbreeding in population 2.
+    """
+    nu1, nu2, m12, m21, T, F1, F2 = params
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = PhiManip.phi_1D_to_2D(xx, phi)
+    phi = Integration.two_pops(phi, xx, T, nu1, nu2, m12=m12, m21=m21)
+    fs = Spectrum.from_phi_inbreeding(phi, ns, (xx, xx), (F1, F2), (2, 2))
+    return fs
+
+def asym_migration_size(params, ns, pts):
+    """
+    Split into two populations, with different migration rates.
+
+    nu1: Size of population 1 after split.
+    nu1a: Change of population size 1.
+    nu2: Size of population 2 after split.
+    nu2a: Change of poulation size 2.
+    m12b: Migration rate from pop 2 to 1 (2*Na*m) before size change.
+    m21b: Migration rate from pop 1 to 2 (2*Na*m) before size change.
+    m12a: Migration rate from pop 2 to 1 (2*Na*m) after size change.
+    m21a: Migration rate from pop 1 to 2 (2*Na*m) after size change.
+    T1: Time in past of split (in units of 2*Na generations)
+    T2: Time in past of pop size change (in units of 2*Na generations)
+    """
+    nu1, nu1a, nu2, nu2a, m12b, m21b, m12a, m21a, T1, T2 = params
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = PhiManip.phi_1D_to_2D(xx, phi)
+
+    phi = Integration.two_pops(phi, xx, T1, nu1=nu1, nu2=nu2, m12=m12b, m21=m21b)
+    phi = Integration.two_pops(phi, xx, T2, nu1=nu1a, nu2=nu2a, m12=m12a, m21=m21a)
+    fs = Spectrum.from_phi(phi, ns, (xx, xx))
+
+    return fs
+
