@@ -37,3 +37,13 @@ akinGC-mccu	[24 12]	6678.11	0.13
 akinGC-mccu_masked	[24 12]	4388.51	0.14
 akinGC-mccu	[26 12]	6761.0	0.13
 akinGC-mccu_masked	[26 12]	4505.02	0.14
+akinLI-akinGC	[34 28]	6949.43	0.02
+akinLI-akinGC_masked	[34 28]	5759.17	0.02
+akinLI-akinGC	[38 30]	3614.0	0.02
+akinLI-akinGC_masked	[38 30]	3041.0	0.02
+akinLI-akinGC	[32 26]	7095.44	0.02
+akinLI-akinGC_masked	[32 26]	5759.87	0.02
+akinLI-akinGC	[34 28]	6949.43	0.02
+akinLI-akinGC_masked	[34 28]	5759.17	0.02
+akinLI-akinGC	[34 28]	6949.43	0.02
+akinLI-akinGC_masked	[34 28]	5759.17	0.02
