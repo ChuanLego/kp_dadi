@@ -665,6 +665,28 @@ def asym_migration_size(params, ns, pts):
     phi = Integration.two_pops(phi, xx, T1, nu1=nu1, nu2=nu2, m12=m12b, m21=m21b)
     phi = Integration.two_pops(phi, xx, T2, nu1=nu1a, nu2=nu2a, m12=m12a, m21=m21a)
     fs = Spectrum.from_phi(phi, ns, (xx, xx))
-
     return fs
 
+def anc_asym_mig_size(params, ns, pts):
+    """
+    Population split into 2 with asym ancient migration before and size change.
+
+    nu1: Size of population 1 after split.
+    nu1a: Change of population size 1.
+    nu2: Size of population 2 after split.
+    nu2a: Change of poulation size 2
+    m12: Migration rate from pop 2 to 1 (2*Na*m) before size change.
+    m21: Migration rate from pop 1 to 2 (2*Na*m) before size change.
+    T1: Time in past of split (in units of 2*Na generations)
+    T2: Time in past of pop size change (in units of 2*Na generations)
+
+    """
+    #8 params
+    nu1, nu2, nu1a, nu2a, m12, m21, T1, T2 = params
+    xx = Numerics.default_grid(pts)
+    phi = PhiManip.phi_1D(xx)
+    phi = PhiManip.phi_1D_to_2D(xx, phi)
+    phi = Integration.two_pops(phi, xx, T1, nu1=nu1, nu2=nu2, m12=m12, m21=m21)
+    phi = Integration.two_pops(phi, xx, T2, nu1=nu1a, nu2=nu2a, m12=0, m21=0)
+    fs = Spectrum.from_phi(phi, ns, (xx, xx))
+    return fs

@@ -179,6 +179,13 @@ def main(snps, model, masked, method, folds, int_params, PTS):
         upper = [200, 200, 200, 200, 20, 20, 20, 20, 15, 15]
         lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
         model_fun = demo_models_kp.asym_migration_size
+    elif model == "anc_asym_mig_size":
+        # asym migration with size change
+        num = 8
+        p_labels = "nu1, nu2, nu1a, nu2a, m12, m21, T1, T2"
+        upper = [200, 200, 200, 200, 20, 20, 20, 20]
+        lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
+        model_fun = demo_models_kp.anc_asym_mig_size
 
 
     else:
