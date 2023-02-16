@@ -66,6 +66,8 @@ def main(snps, model, vmin, opt, PTS, figsize, figsize2):
         model_fun = demo_models_kp.anc_sym_mig_inbred
     elif model == "sec_cont":
         model_fun = demo_models_kp.sec_contact_sym_mig_inbred
+    elif model == "aamsi":
+        model_fun = demo_models_kp.anc_asym_mig_size_inbred
     else:
         model_fun = False
         print("Choose correct model name")
