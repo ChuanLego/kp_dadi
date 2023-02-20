@@ -1,6 +1,7 @@
 P2C076	mccu
 P2C077	mccu
 P2C079	mccu
+P2C080	mccu
 P2C081	mccu
 P2C082	mccu
 P2C083	mccu
