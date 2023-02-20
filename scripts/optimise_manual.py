@@ -187,7 +187,6 @@ def main(snps, model, masked, method, folds, int_params, PTS):
         lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
         model_fun = demo_models_kp.anc_asym_mig_size
 
-
     else:
         print("model nickname undefined please check you are using the correct model nickname!")
 
