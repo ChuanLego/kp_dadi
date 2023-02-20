@@ -690,3 +690,28 @@ def anc_asym_mig_size(params, ns, pts):
     phi = Integration.two_pops(phi, xx, T2, nu1=nu1a, nu2=nu2a, m12=0, m21=0)
     fs = Spectrum.from_phi(phi, ns, (xx, xx))
     return fs
+
+def bottleneck(params, ns, pts):
+
+    nuB, nuF, TB, TF = params
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = Integration.one_pop(phi, xx, TB, nuB)
+    phi = Integration.one_pop(phi, xx, TF, nuF)
+
+    fs = Spectrum.from_phi(phi, ns, (xx,))
+    return fs
+
+def test(params, ns, pts):
+
+    nu1, nu2, nu3, T1, T2, T3 = params
+    xx = Numerics.default_grid(pts)
+
+    phi = PhiManip.phi_1D(xx)
+    phi = Integration.one_pop(phi, xx, T1, nu1)
+    phi = Integration.one_pop(phi, xx, T2, nu2)
+    phi = Integration.one_pop(phi, xx, T3, nu3)
+
+    fs = Spectrum.from_phi(phi, ns, (xx,))
+    return fs

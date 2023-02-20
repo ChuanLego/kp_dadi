@@ -186,6 +186,20 @@ def main(snps, model, masked, method, folds, int_params, PTS):
         upper = [200, 200, 200, 200, 20, 20, 20, 20]
         lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
         model_fun = demo_models_kp.anc_asym_mig_size
+    elif model == "bottleneck":
+        #  bottleneck
+        num = 4
+        p_labels = "nuB, nuF, TB, TF"
+        upper = [200, 200, 20, 20]
+        lower = [0.001, 0.001, 0.001, 0.001]
+        model_fun = demo_models_kp.bottleneck
+    elif model == "test":
+        #  test
+        num = 6
+        p_labels = "nu1, nu2, nu3, T1, T2, T3"
+        upper = [200, 200, 200, 20, 20, 20]
+        lower = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
+        model_fun = demo_models_kp.test
 
     else:
         print("model nickname undefined please check you are using the correct model nickname!")
