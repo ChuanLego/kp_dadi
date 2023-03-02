@@ -73,3 +73,11 @@ akinallrm1-mccu	[92 12]	7565.3	0.12
 akinallrm1-mccu_masked	[92 12]	7159.48	0.12
 akinallrm1-mccu	[92 12]	7565.3	0.12
 akinallrm1-mccu_masked	[92 12]	7159.48	0.12
+akinallrm2-mccu	[92 14]	22400.94	0.1
+akinallrm2-mccu_masked	[92 14]	21480.66	0.1
+akinallrm2-mccu	[92 12]	24280.88	0.1
+akinallrm2-mccu_masked	[92 12]	23096.06	0.1
+akinallrm2-mccu	[60 12]	23982.33	0.11
+akinallrm2-mccu_masked	[60 12]	19995.37	0.11
+akinallrm2-mccu	[92 12]	24280.88	0.1
+akinallrm2-mccu_masked	[92 12]	23096.06	0.1
