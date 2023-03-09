@@ -45,7 +45,7 @@ def main(snps, model, sims, genotypes, opt, PTS):
 
         # Making subsampled bootstraps
         # Need to alter chunk_size here depending on how long your contigs are
-    boots_subsample = Misc.bootstraps_subsample_vcf(snp_path, pop_path, chunk_size=100, Nboot=args.sims,
+    boots_subsample = Misc.bootstraps_subsample_vcf(snp_path, pop_path, chunk_size=300, Nboot=args.sims,
                                                     subsample=subsample,
                                                     pop_ids=pop_ids, polarized=False)
     # Saving your bootstraps to file
@@ -65,6 +65,8 @@ def main(snps, model, sims, genotypes, opt, PTS):
         model_fun = demo_models_kp.anc_sym_mig_inbred
     elif model == "sec_cont":
         model_fun = demo_models_kp.sec_contact_sym_mig_inbred
+    elif model == "asym_mig":
+        model_fun = demo_models_kp.asym_migration
     else:
         model_fun = False
         print("Please specify the correct model: iso_inbred, mig_inbred, anc_mig or sec_cont.")

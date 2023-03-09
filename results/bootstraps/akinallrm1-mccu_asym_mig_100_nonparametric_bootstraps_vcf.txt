@@ -1,0 +1,4 @@
+Pops	Model	Likelihood	AIC	Theta	sfs_sum	chi-squared	bootstrap
+Pops	Model	Likelihood	AIC	Theta	sfs_sum	chi-squared	bootstrap
+Pops	Model	Likelihood	AIC	Theta	sfs_sum	chi-squared	bootstrap
+Pops	Model	Likelihood	AIC	Theta	sfs_sum	chi-squared	bootstrap
